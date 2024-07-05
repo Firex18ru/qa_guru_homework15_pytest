@@ -34,7 +34,7 @@ def setup_browser(request):
     width, height = map(int, request.param.split("x"))
     browser.config.window_width = width
     browser.config.window_height = height
-    if width > 926:
+    if request.param in ["2560x1080", "1920x1080", "1280x1024"]:
         yield "desktop"
     else:
         yield "mobile"
