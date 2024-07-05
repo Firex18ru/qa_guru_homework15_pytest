@@ -2,7 +2,6 @@ import pytest
 from selene import browser, be
 
 
-# test_github_skip.py
 def test_github_mobile_skip(setup_browser):
     if setup_browser == "mobile":
         pytest.skip("This is a mobile resolution")

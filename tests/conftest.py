@@ -1,5 +1,5 @@
 import pytest
-from selene import browser, be
+from selene import browser
 
 
 @pytest.fixture(params=["320x568", "428x926"])
