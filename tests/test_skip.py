@@ -1,18 +1,18 @@
-"""
-Параметризуйте фикстуру несколькими вариантами размеров окна
-Пропустите мобильный тест, если соотношение сторон десктопное (и наоборот)
-"""
 import pytest
+from selene import browser, be
 
 
-@pytest.fixture()
-def browser():
-    pass
+# test_github_skip.py
+def test_github_mobile_skip(setup_browser):
+    if setup_browser == "mobile":
+        pytest.skip("This is a mobile resolution")
+    browser.open("https://github.com/")
+    browser.element('[aria-label="Toggle navigation"].Button--link').click()
+    browser.element(".HeaderMenu-link--sign-in").should(be.clickable).click()
 
 
-def test_github_desktop(browser):
-    pass
-
-
-def test_github_mobile(browser):
-    pass
+def test_github_desktop_skip(setup_browser):
+    if setup_browser == "desktop":
+        pytest.skip("This is a desktop resolution")
+    browser.open("https://github.com/")
+    browser.element(".HeaderMenu-link--sign-in").should(be.clickable).click()
